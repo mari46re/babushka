@@ -13,6 +13,12 @@
         padding: 0;
       }
 
+
+      html{
+        scroll-behavior: smooth;
+      }
+
+
       section {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -61,10 +67,12 @@
       .splash{
         height: 100vh;
         width: 100vw;
-        background-color:rgb(245, 145, 15);
+        /* background-color:rgb(245, 145, 15); */
         display: flex;
         align-items: center;
         justify-content: center;
+        background-image: url("splash2.png");
+        background-size: cover;
       }
 
       #modal {
@@ -75,6 +83,7 @@
         width: 100vw;
         background-color: rgba(0, 75, 214, 0.726);
         display: none;
+        z-index: 100;
       }
 
       #modal article {
@@ -93,7 +102,7 @@
         padding: 1em;
         font-size: 1.7em;
         font-weight: bolder;
-        color: white;
+        color: rgb(248, 248, 149);
         cursor: pointer;
       }
 
@@ -117,21 +126,41 @@
         border: 4px solid rgb(245, 145, 15);
         /* box-shadow: 5px 5px 5px rgb(0, 75, 214); */
       }
+      #pil {
+      width: 80px;
+      }
+
+      .pil_container {
+      animation-name: pulse_kf;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      top: 88%;
+      }
+      @keyframes pulse_kf {
+      0%,
+      100% {
+        /* transform: scale(1); */
+        transform: translateY(0%);
+      }
+      50% {
+        /* transform: scale(1.2); */
+        transform: translateY(90%);
+      }
+    }
 
       p{
         font-family: ainslie-sans-condensed, sans-serif;
-
-font-weight: 400;
-
-font-style: normal;
-
-font-size: 0.8em;
-text-align: center;
-      }
+        font-weight: 400;
+        font-style: normal;
+        font-size: 0.8em;
+        text-align: center;
+        }
 
       h1{
           font-size: 4em;
           z-index: 10;
+          text-shadow: 2px 3px rgb(248, 248, 149);
         }
 
         .babushka{
@@ -139,53 +168,106 @@ text-align: center;
           width: 60%;
         }
 
+        #flex{display: flex;
+    justify-content: center;
+    padding: 1.5rem;}
+
+    #modal article p{
+      padding: 1em;
+    }
+
         @media (min-width: 600px){
           .babushka{
-        width: 35%;
-      }
+            width: 35%;
+          }
+            .pil_container {
+            left: 50%;
+            position: absolute;
+          }
+
+          #sulten{
+            padding-top: 90px;
+            height: 30vw;
+            }
+          }
+
+        @media (max-width: 700px) {
+          .pil_container {
+            left: 40%;
+            position: absolute;
+          }
+
+          #sulten{
+        padding-top: 100px;
+        height: 70vw;
+          }
         }
 
       @media (min-width: 1000px) {
+        #sulten{
+          padding-top: 100px;
+          height: 20vw;
+        }
+
         section {
           width: 1000px;
           margin: auto;
         }
 
+        .pil_container {
+          left: 50%;
+          position: absolute;
+        }
+
         .babushka{
-        width: 22%;
-      }
+          width: 22%;
+        }
     
 
         #modal article{
-          width: 900px;
+          width: 850px;
           margin: auto;   
         }
 
         #modal article img{
           width: 70%;
         }
-        /* #modal article img {
-        width: 50%;
-        } */
 
         h1{
           font-size: 7em;
-        }
+        }  
       }
+
+      #sulten{
+          background-color: rgb(0, 75, 214);
+        width: 100vw;
+        }
+
+      #nr1{
+        color: rgb(248, 248, 149);
+        font-size: 2em;
+      }
+
     </style>
   </head>
   <body>
     <div class="splash">
       <img class ="babushka" src="babushka.svg" alt="">
     <h1>Bistro Babushka</h1></div>
+    <div class="pil_container">
+      <a href="#nr1"><img id="pil" src="pil.svg" alt="" /></a>
+    </div>
+
+    <div id="sulten"><h2 id="nr1">Sulten? Undersøg vores menukort og lad dig friste...</h2></div>
     <header>
+      
       <nav>
         <button data-menu="alle" class="valgt">Alle</button>
         <button data-menu="forretter">Forretter</button>
         <button data-menu="hovedretter">Hovedretter</button>
         <button data-menu="desserter">Desserter</button>
         <button data-menu="sideorders">Sideorders</button>
-        <button data-menu="drikkevarer">drikkevarer</button>
+        <button data-menu="drikkevarer">Drikkevarer</button>
       </nav>
       <h2>Alle:</h2>
     </header>
@@ -193,7 +275,8 @@ text-align: center;
       <aside id="modal">
         <div id="luk">&#x2715</div>
         <article>
-          <img src="" alt="" />
+          <div id="flex">
+          <img src="" alt="" /></div>
           <h2 class="navn"></h2>
           <p class="langbeskrivelse"></p>
           <p class="oprindelsesregion"></p>
